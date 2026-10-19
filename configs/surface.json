@@ -1,0 +1,9 @@
+{
+  "preprocessing": {},
+  "terrain": {},
+  "segmentation": {},
+  "scoring": {},
+  "surface": {
+    "threshold": 0.6
+  }
+}

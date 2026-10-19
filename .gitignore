@@ -1,0 +1,37 @@
+.venv/
+.tmp/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.vscode/
+outputs/*
+!outputs/.gitkeep
+data/images/*
+!data/images/.gitkeep
+data/videos/*
+!data/videos/.gitkeep
+*.pt
+*.pt.part
+data/datasets/
+reports/runs/
+*.mp4
+*.avi
+*.joblib
+
+# Local notes and generated reports
+/CHANGELOG.md
+/PROJE_PLANI.md
+/docs/*
+!/docs/KULLANIM.md
+/reports/*
+!/reports/.gitkeep
+
+# Local report-generation workflow
+/scripts/build_report.py
+/scripts/build_expanded_report.py
+/scripts/run_full_study.py
+
+# Unreviewed annotation drafts
+/data/annotations/manual/
+/data/manifests/manual_visual.json

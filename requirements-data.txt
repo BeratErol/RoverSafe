@@ -1,0 +1,3 @@
+# Yalnızca resmî Potsdam arşivinden tek karo indirme yardımcısı için.
+truststore>=0.10,<1
+rarfile>=4.2,<5

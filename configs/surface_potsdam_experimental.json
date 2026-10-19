@@ -1,0 +1,11 @@
+{
+  "preprocessing": {},
+  "terrain": {},
+  "segmentation": {},
+  "scoring": {},
+  "surface": {
+    "model_path": "models/surface_potsdam.joblib",
+    "threshold": 0.9,
+    "grid_step": 4
+  }
+}

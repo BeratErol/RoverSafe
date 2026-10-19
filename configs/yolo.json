@@ -1,0 +1,5 @@
+{
+  "preprocessing": {"filter_type": "gaussian", "kernel_size": 5, "use_clahe": false},
+  "terrain": {}, "segmentation": {}, "scoring": {},
+  "obstacles": {"model_path": "models/yolo11n.pt", "device": "cpu", "confidence": 0.25, "margin": 15}
+}

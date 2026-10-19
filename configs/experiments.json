@@ -1,0 +1,8 @@
+[
+  {"name":"canny_edges", "config":{"preprocessing":{},"terrain":{"edge_method":"canny"},"segmentation":{"max_variance":16256.25},"scoring":{"texture_weight":0,"edge_weight":0.6},"obstacles":null}},
+  {"name":"sobel_edges", "config":{"preprocessing":{},"terrain":{"edge_method":"sobel"},"segmentation":{"max_variance":16256.25},"scoring":{"texture_weight":0,"edge_weight":0.6},"obstacles":null}},
+  {"name":"canny_texture", "config":{"preprocessing":{},"terrain":{},"segmentation":{},"scoring":{},"obstacles":null}},
+  {"name":"median_texture", "config":{"preprocessing":{"filter_type":"median"},"terrain":{},"segmentation":{},"scoring":{},"obstacles":null}},
+  {"name":"clahe_texture", "config":{"preprocessing":{"use_clahe":true},"terrain":{},"segmentation":{},"scoring":{},"obstacles":null}},
+  {"name":"canny_texture_yolo", "config":{"preprocessing":{},"terrain":{},"segmentation":{},"scoring":{},"obstacles":{"model_path":"models/yolo11n.pt","device":"cpu"}}}
+]

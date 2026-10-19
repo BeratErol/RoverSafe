@@ -1,0 +1,38 @@
+[
+  {
+    "name": "surface_60",
+    "config": {
+      "preprocessing": {},
+      "terrain": {},
+      "segmentation": {},
+      "scoring": {},
+      "surface": {
+        "threshold": 0.6
+      }
+    }
+  },
+  {
+    "name": "surface_75",
+    "config": {
+      "preprocessing": {},
+      "terrain": {},
+      "segmentation": {},
+      "scoring": {},
+      "surface": {
+        "threshold": 0.75
+      }
+    }
+  },
+  {
+    "name": "surface_90",
+    "config": {
+      "preprocessing": {},
+      "terrain": {},
+      "segmentation": {},
+      "scoring": {},
+      "surface": {
+        "threshold": 0.9
+      }
+    }
+  }
+]

@@ -1,0 +1,1391 @@
+{
+  "schema_version": 1,
+  "source": "dronefreak/Aeroscapes",
+  "revision": "7c2e6f4e301882934799753989563d85ecd6157f",
+  "official_source": "https://github.com/ishann/aeroscapes",
+  "mirror_is_unofficial": true,
+  "class_policy": {
+    "target": [
+      10
+    ],
+    "risk": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11
+    ],
+    "unknown": [
+      0,
+      255
+    ]
+  },
+  "evaluation_note": "Road is a semantic proxy, not verified landing safety.",
+  "samples": [
+    {
+      "id": "000001_001",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_001.jpg",
+          "sha256": "ed0f9e9f935be1aa1af0fefaa28e4544bcc3516df7eef8042253b37cecf22f81"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_001.png",
+          "sha256": "0392d0a5800fa0f79d45bfe21a5a2ca5dec8796247b541c085af3cc416a367ba"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_001.png"
+    },
+    {
+      "id": "000001_002",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_002.jpg",
+          "sha256": "390c4cf5c863b733b126526b02bf71c0e3f2eb84317c9e29dcce357ba28d8f5e"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_002.png",
+          "sha256": "9ef7d5ca3599b89cd63c5de62f6aa08d19ad9ada1508861d40d1a00a9ca0e2b0"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_002.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_002.png"
+    },
+    {
+      "id": "000001_003",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_003.jpg",
+          "sha256": "421d33d031313bb9bb133ff11f5c95cfd325eb5ceb3ed2386031a2450925ecfc"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_003.png",
+          "sha256": "743b0597417f76e9e06c5cd745324f462aec218837109be9f45faffa4168af24"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_003.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_003.png"
+    },
+    {
+      "id": "000001_004",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_004.jpg",
+          "sha256": "46025c39f674a2ffc0fa6f4b525e02f572a63bb26a57e426924f778af7d2aade"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_004.png",
+          "sha256": "2e03c3fd566818c226e8f73aa06abd32384b32e06ee2cab8eea396ebd07a0ee7"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_004.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_004.png"
+    },
+    {
+      "id": "000001_005",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_005.jpg",
+          "sha256": "607df83f989dc09b963b9df230bba531c2ca251a663b02d3536ea99d9c796b30"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_005.png",
+          "sha256": "546d40866f037526fd34dba1f2b49d2df401775fe32299b36050329def73c246"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_005.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_005.png"
+    },
+    {
+      "id": "000001_006",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_006.jpg",
+          "sha256": "50bf6f1092b43e8970fea2896f92ea6e0434f0a25b6ee5ac6a0b995fdeef925f"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_006.png",
+          "sha256": "79e5b02e72e465a37acec1c9aafdc62de98ee236954cc5f5e2bd6bc3bd0e5b06"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_006.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_006.png"
+    },
+    {
+      "id": "000001_007",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_007.jpg",
+          "sha256": "f7ed0c4b5376ff70834327aee2085f06d904caf9bdb8dc13acdcf2be845b69f7"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_007.png",
+          "sha256": "e583195217aa5df0a513506774d3085acf81c4c1a5b4fc12b5afcfb84f77b616"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_007.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_007.png"
+    },
+    {
+      "id": "000001_008",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_008.jpg",
+          "sha256": "7934202f5d9699926ef9026ac8c27f72bb1540fccd8da5166aa9b2cd3bde405e"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_008.png",
+          "sha256": "6b9e3d14c651064e706686813e83eb3558d166fb221e5d674e18aaf31e7e697c"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_008.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_008.png"
+    },
+    {
+      "id": "000001_009",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_009.jpg",
+          "sha256": "745299d07cf7456e6a472fe22ffaff083e14fd45e2f63a4f3f6c3be9085c6484"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_009.png",
+          "sha256": "cad82cd72891d10673c0490b4b0cb6d99a2ac0ac8878cc27e611b0376bff1844"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_009.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_009.png"
+    },
+    {
+      "id": "000001_010",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_010.jpg",
+          "sha256": "09c8092ff059c84738b8f7bca8a67da85c9e036590989b918cdfe98db5951113"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_010.png",
+          "sha256": "e7302b21c60482b68174696ae09aea36975cb07e5f83cb1c487f90e91b600f14"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_010.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_010.png"
+    },
+    {
+      "id": "000001_011",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_011.jpg",
+          "sha256": "0e870eeca11ca4985c9c0d4eeaf86e3067afe9d05841a862088b32d3a2f46529"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_011.png",
+          "sha256": "eed2390c8fa16ad61db420b47d3fe89735753e3f3a20c20f7685c38c66e5372b"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_011.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_011.png"
+    },
+    {
+      "id": "000001_012",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_012.jpg",
+          "sha256": "f3cac1dc07e8fd3fb293cd526aed33ab1b1b211d87ed77dc45d362ffb5f791bb"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_012.png",
+          "sha256": "74a63c0f3d8edbdb8e7558a3871b6d3ae34f931fcfc3573a82e7c2d0b8ade5b0"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_012.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_012.png"
+    },
+    {
+      "id": "000001_013",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_013.jpg",
+          "sha256": "e004d30da551519c45d6fc279f6d4b9e30bddc254ac7f28391726452b838f438"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_013.png",
+          "sha256": "0e4652076d46216aef917e2436145479e3df5e07c952f9a64932bebcd9e57135"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_013.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_013.png"
+    },
+    {
+      "id": "000001_014",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_014.jpg",
+          "sha256": "d8476fd04693bda389c1b21fe2ca72e11c917bc9061b2c5250830b9158b41325"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_014.png",
+          "sha256": "d3bcb77b5a406b619653f908e83df174174d4cdc1e38b6ac54e298662568642e"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_014.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_014.png"
+    },
+    {
+      "id": "000001_015",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_015.jpg",
+          "sha256": "ba15cb148564b001f1148fb5f9da883d05d6ba0fe6d329744b72108b10b149eb"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_015.png",
+          "sha256": "d073a6f43edead6f585d823d05fc3696b72eb39b7be03ccb36a2a0b1a40617c3"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_015.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_015.png"
+    },
+    {
+      "id": "000001_016",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_016.jpg",
+          "sha256": "77779ec60bee45e984153c23c49b24a45ede53122fa640b577c0eb512886bd4a"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_016.png",
+          "sha256": "d13e1639cb2f4af1e7bda7556eb118dcfe4267695ebf984550c7f0cb1e2b0c2f"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_016.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_016.png"
+    },
+    {
+      "id": "000001_017",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_017.jpg",
+          "sha256": "bf5e73ab059f9bbd2b35e07e7133a084267d6c4b2e47c35b074100098ed53448"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_017.png",
+          "sha256": "3badc66e67571fc95b6e4c65a9989a9bdf58199ee8a353c2f9552d014be6943a"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_017.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_017.png"
+    },
+    {
+      "id": "000001_018",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_018.jpg",
+          "sha256": "16403c5fa843887b15411382aa75a66b6d8eef3dd944e68b7a760282c0cbf4d2"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_018.png",
+          "sha256": "d167bd8a7378af56e1ff305fdae2b1fffd753c315a5917da7037c2e280a96b35"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_018.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_018.png"
+    },
+    {
+      "id": "000001_019",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_019.jpg",
+          "sha256": "0c912b27a4416ed86cfba988925edd3518a613050e51f403e9db6a98e8e604f0"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_019.png",
+          "sha256": "75977d757fbfef6a14a218ea51ece279cc166893db59fe453e19f3a128f15000"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_019.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_019.png"
+    },
+    {
+      "id": "000001_020",
+      "scene_id": "000001",
+      "split": "demo",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000001_020.jpg",
+          "sha256": "a4c8bc95b165176be35260f3ff04bfa25bf1d6ec0ea601565a55760903913d80"
+        },
+        "mask": {
+          "remote": "data/masks/train/000001_020.png",
+          "sha256": "c0f5d339d93657c9cb468c845e3eed68a93fdfdd4165372624875e7e0c8ffe55"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000001_020.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000001_020.png"
+    },
+    {
+      "id": "000002_001",
+      "scene_id": "000002",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000002_001.jpg",
+          "sha256": "31cfd0b3e6963370a811387f8bf134f5da985c0b4db0d7047fbaa856e0c5b935"
+        },
+        "mask": {
+          "remote": "data/masks/train/000002_001.png",
+          "sha256": "e1e122aa2f2301b40943dc12ee642203996774dd71279881730e472d3e828140"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000002_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000002_001.png"
+    },
+    {
+      "id": "000002_047",
+      "scene_id": "000002",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000002_047.jpg",
+          "sha256": "0909adb91ca6b39418275014c3f4ff443b6b1b36893d030f57efbf617e63edda"
+        },
+        "mask": {
+          "remote": "data/masks/train/000002_047.png",
+          "sha256": "d262cd9d44267d9aadb6394f0ec231438d0df1424fc3d29678a0065e2d6587aa"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000002_047.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000002_047.png"
+    },
+    {
+      "id": "000002_092",
+      "scene_id": "000002",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000002_092.jpg",
+          "sha256": "0d1f7dd9201b9234b630e8b0d56baa15ecdccccb0523c38931efa784d7e248e9"
+        },
+        "mask": {
+          "remote": "data/masks/train/000002_092.png",
+          "sha256": "ac573444ec0fb30ae227b864a6ac20fcade43b555d89d054cd34ef356ee2f84d"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000002_092.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000002_092.png"
+    },
+    {
+      "id": "000003_001",
+      "scene_id": "000003",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000003_001.jpg",
+          "sha256": "c0bd92529315a330978cb9bcc02d545891a82bf30f8c42dd8157b6921d502cd2"
+        },
+        "mask": {
+          "remote": "data/masks/train/000003_001.png",
+          "sha256": "c13b040f8f1b0115a4fd8f3ef96ab4e62d349e93592edc8d45dff69173621f04"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000003_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000003_001.png"
+    },
+    {
+      "id": "000003_046",
+      "scene_id": "000003",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000003_046.jpg",
+          "sha256": "a85eca529f72932124b71ee99c953586c1d2af543fe27c7f1fed17e874f6d248"
+        },
+        "mask": {
+          "remote": "data/masks/train/000003_046.png",
+          "sha256": "e717962889d32d035e02949aa4e5e6025c4d9ddac4780229c068114182b53d88"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000003_046.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000003_046.png"
+    },
+    {
+      "id": "000003_091",
+      "scene_id": "000003",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000003_091.jpg",
+          "sha256": "18261a10ebe445439b000421221dbbf9c43757dc8d971a406dd3e6fd5b72b550"
+        },
+        "mask": {
+          "remote": "data/masks/train/000003_091.png",
+          "sha256": "403f5096e21f6fcae246947812c019f95fb6946677309bd17b5b44d443e2c9c2"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000003_091.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000003_091.png"
+    },
+    {
+      "id": "000004_001",
+      "scene_id": "000004",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000004_001.jpg",
+          "sha256": "a0a86be14a9abd95b9a04e781d1181e5a4d04c5461d38e9f22981e9376277993"
+        },
+        "mask": {
+          "remote": "data/masks/train/000004_001.png",
+          "sha256": "89096435f8f6eb3bb7d858072f8d160da5ae252c1ce83fb5268416593639f309"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000004_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000004_001.png"
+    },
+    {
+      "id": "000004_035",
+      "scene_id": "000004",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000004_035.jpg",
+          "sha256": "1e7d00314a7931998babe0c2de8c821d4d0146167d90b0dac1ff7734e1145049"
+        },
+        "mask": {
+          "remote": "data/masks/train/000004_035.png",
+          "sha256": "cf1092117bb33c9bbe16174073c42d016f6fb88152e7dc8098154fb6c07cac04"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000004_035.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000004_035.png"
+    },
+    {
+      "id": "000004_069",
+      "scene_id": "000004",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000004_069.jpg",
+          "sha256": "3e020592ae400d77fe3b668962fb6c0ca9a71b99603b16bfab178e60830655fe"
+        },
+        "mask": {
+          "remote": "data/masks/train/000004_069.png",
+          "sha256": "06c5813182b09a56a9736ab11203a9c49a113be6bc15dbbab918a2af0b52abe5"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000004_069.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000004_069.png"
+    },
+    {
+      "id": "000005_001",
+      "scene_id": "000005",
+      "split": "test",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000005_001.jpg",
+          "sha256": "7af4bd8fa238c6e23dbfb7756ae44469096b00c6d13f0c70f5aa4b4c479bd2b2"
+        },
+        "mask": {
+          "remote": "data/masks/train/000005_001.png",
+          "sha256": "2211dcebc1b5556ddef6a91ea68ed3cfc39c22051152a00924ffc54391b23353"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000005_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000005_001.png"
+    },
+    {
+      "id": "000005_035",
+      "scene_id": "000005",
+      "split": "test",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000005_035.jpg",
+          "sha256": "0dd679c98e6a034c41e2804406c2fda8cf032d85e0bc00c13ac95f8e2c09891f"
+        },
+        "mask": {
+          "remote": "data/masks/train/000005_035.png",
+          "sha256": "4627b5332ab2c5509f84fa62c0058dafbd8abb1a54b59758f193f461fb6a59bf"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000005_035.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000005_035.png"
+    },
+    {
+      "id": "000005_069",
+      "scene_id": "000005",
+      "split": "test",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000005_069.jpg",
+          "sha256": "e71aa272d971d5397f4bb08f074718127573c31f6bd124ba0ec2654f0a89f699"
+        },
+        "mask": {
+          "remote": "data/masks/train/000005_069.png",
+          "sha256": "e5efb5a62a7dac5619a30cb75a31ef2ac6f203f0702c034c45ffee585bde2396"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000005_069.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000005_069.png"
+    },
+    {
+      "id": "000101_001",
+      "scene_id": "000101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000101_001.jpg",
+          "sha256": "ee0e954b78a81c30bb7fc020c7247bd65b0214711195e11f6e3330bbde13bbe0"
+        },
+        "mask": {
+          "remote": "data/masks/train/000101_001.png",
+          "sha256": "f3aaee2f43046df4f0f1017b918a061f60ed2df15a24ba4705c453544b4ee781"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000101_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000101_001.png"
+    },
+    {
+      "id": "000101_040",
+      "scene_id": "000101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000101_040.jpg",
+          "sha256": "ea9a0c28c43f30f3ff608b6bbe28e238fd99f09a68a4c0072f80cbe2d826522e"
+        },
+        "mask": {
+          "remote": "data/masks/train/000101_040.png",
+          "sha256": "651829c8ab9435941984a2c3ab51add22a5046966f7fec9b2329361f1e8d8517"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000101_040.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000101_040.png"
+    },
+    {
+      "id": "000101_079",
+      "scene_id": "000101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000101_079.jpg",
+          "sha256": "337fba7ee8b2ed9f62bf4d3d02fe6ea5696db8529579fa0cf099fe495bae3ef2"
+        },
+        "mask": {
+          "remote": "data/masks/train/000101_079.png",
+          "sha256": "5cc879b92a83cc21dc5a5fa5795091c23a84d9b78c6bceacf6d5563e8d5f09fd"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000101_079.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000101_079.png"
+    },
+    {
+      "id": "000102_001",
+      "scene_id": "000102",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000102_001.jpg",
+          "sha256": "097b98744d2feeec989e24588fb3bc365290c4d48b23989dde1a8f293fd63e7d"
+        },
+        "mask": {
+          "remote": "data/masks/train/000102_001.png",
+          "sha256": "50ab1fb9dfb968d8474b59051ed15ea1a339aabc99f900d55512489ed2d62141"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000102_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000102_001.png"
+    },
+    {
+      "id": "000102_020",
+      "scene_id": "000102",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000102_020.jpg",
+          "sha256": "b8bc6532e569a41a37ba743766317a1deae6cbf7e3d124b34fe4f8fcdb4bce4b"
+        },
+        "mask": {
+          "remote": "data/masks/train/000102_020.png",
+          "sha256": "4a30d5403aa820ff79a8db39d41da6316118d9a50168fb3e4c51c24fd9489507"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000102_020.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000102_020.png"
+    },
+    {
+      "id": "000102_039",
+      "scene_id": "000102",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/000102_039.jpg",
+          "sha256": "7924d857c0b388d8c917a3570bf71fd182b72b3729d313e8b7f8343906c8df00"
+        },
+        "mask": {
+          "remote": "data/masks/train/000102_039.png",
+          "sha256": "b55e2121b89d32fdb756cebeede034c17de85275083407fa3d085a8a38eff484"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/000102_039.jpg",
+      "mask": "data/datasets/aeroscapes/masks/000102_039.png"
+    },
+    {
+      "id": "001101_001",
+      "scene_id": "001101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/001101_001.jpg",
+          "sha256": "925c4144b36528fbe4e5b07f997ef9a8bd94917a6f9d74332ee75a5caa478653"
+        },
+        "mask": {
+          "remote": "data/masks/train/001101_001.png",
+          "sha256": "21b7120e0a12fbcb691a15077c021e7ce59a97237058164f8dfdc39dabe6f0d9"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/001101_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/001101_001.png"
+    },
+    {
+      "id": "001101_019",
+      "scene_id": "001101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/001101_019.jpg",
+          "sha256": "9cd21cfc55637c1f7850fbbd22df6950e71f804fe9935be1cb665f192c52a2c3"
+        },
+        "mask": {
+          "remote": "data/masks/train/001101_019.png",
+          "sha256": "e551b0418133afe2022f2aef5cf872b1592a09a0467cff2d5e08a52ae4883301"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/001101_019.jpg",
+      "mask": "data/datasets/aeroscapes/masks/001101_019.png"
+    },
+    {
+      "id": "001101_037",
+      "scene_id": "001101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/001101_037.jpg",
+          "sha256": "90718bd60967bef55791e81b08f519f7f2531dd31b09f5255ea4b40e1f031f48"
+        },
+        "mask": {
+          "remote": "data/masks/train/001101_037.png",
+          "sha256": "666a6068afab71270fe4e202b1ad46c929c775c645c6223273988877410bdb39"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/001101_037.jpg",
+      "mask": "data/datasets/aeroscapes/masks/001101_037.png"
+    },
+    {
+      "id": "002000_001",
+      "scene_id": "002000",
+      "split": "test",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002000_001.jpg",
+          "sha256": "9bd96c27d055ae8eea9ce42f3fc4891d7d519237f6ea8da17779bbf268c9787e"
+        },
+        "mask": {
+          "remote": "data/masks/val/002000_001.png",
+          "sha256": "aed275df89d1d7e48bd52ab3d66a5c820c3b7cf75750bca5859b242ca2c1786b"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002000_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002000_001.png"
+    },
+    {
+      "id": "002000_025",
+      "scene_id": "002000",
+      "split": "test",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002000_025.jpg",
+          "sha256": "15112a6e16ac50d32bc1371d276a870d903a8c264bb99874dc5aac222a4bba97"
+        },
+        "mask": {
+          "remote": "data/masks/val/002000_025.png",
+          "sha256": "f211db857d98936a4e20311c8952e3bc7bed521122259cae2e02ba4ba8cbfa17"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002000_025.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002000_025.png"
+    },
+    {
+      "id": "002000_050",
+      "scene_id": "002000",
+      "split": "test",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002000_050.jpg",
+          "sha256": "3d326b85a32585e6087588b4fc5bb409fdf635e9f24696569aac3d9edd66a6c8"
+        },
+        "mask": {
+          "remote": "data/masks/val/002000_050.png",
+          "sha256": "9bf8cac3c2e44c35325f397fc5cf7a7a935d5341c7da25456de483d5717dbb1a"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002000_050.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002000_050.png"
+    },
+    {
+      "id": "002001_001",
+      "scene_id": "002001",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/002001_001.jpg",
+          "sha256": "1e66d5c54ca7b4036bb5d8faba1a28e5df4a7076d6b3b5c300411ad6f3f0942d"
+        },
+        "mask": {
+          "remote": "data/masks/train/002001_001.png",
+          "sha256": "b912ac2bc67bfb511416919ad15699843291943c706fa6fd0c248ba753da854a"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002001_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002001_001.png"
+    },
+    {
+      "id": "002001_029",
+      "scene_id": "002001",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/002001_029.jpg",
+          "sha256": "008a0b78d3313a8dc72612db19c599fc0d8d195cd7d3c2d3b89e67116e200004"
+        },
+        "mask": {
+          "remote": "data/masks/train/002001_029.png",
+          "sha256": "4fafea8b8a7b3029ba609179a7bdec6283736375bd402cb9aa73bdf7112f4805"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002001_029.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002001_029.png"
+    },
+    {
+      "id": "002001_058",
+      "scene_id": "002001",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/002001_058.jpg",
+          "sha256": "69e84729e4a1aa878101d08b71a62bcab8719135a08c70ceca68eb2a87a13b57"
+        },
+        "mask": {
+          "remote": "data/masks/train/002001_058.png",
+          "sha256": "49f9ee51f57513831a0bebf132c4658ab76b6e5edab7c8ac3e7e3715dc1b7d84"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002001_058.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002001_058.png"
+    },
+    {
+      "id": "002002_001",
+      "scene_id": "002002",
+      "split": "development",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002002_001.jpg",
+          "sha256": "14a1ceb26ffac999968fc2a18c419dceccbe2d1423ba9a591417317e5c824a3b"
+        },
+        "mask": {
+          "remote": "data/masks/val/002002_001.png",
+          "sha256": "aa2741a5a9de99c7510df795b6659a6d16f0f1ef218b2d939b1f48d93665c39a"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002002_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002002_001.png"
+    },
+    {
+      "id": "002002_027",
+      "scene_id": "002002",
+      "split": "development",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002002_027.jpg",
+          "sha256": "f83abc9be97479be89dee5bf4259896c11731b89604754832ebf8a0fd3e66f03"
+        },
+        "mask": {
+          "remote": "data/masks/val/002002_027.png",
+          "sha256": "b11fa983fd49bb22f0a107a9f46cc2b569f793cff70326face29920e94dc4035"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002002_027.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002002_027.png"
+    },
+    {
+      "id": "002002_052",
+      "scene_id": "002002",
+      "split": "development",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002002_052.jpg",
+          "sha256": "d2a5ec5d4e27dbe277689d59d0493e0de32bbe29a364abed6ba15f1c365786f2"
+        },
+        "mask": {
+          "remote": "data/masks/val/002002_052.png",
+          "sha256": "dc653d9af72f62248258632ff4e01640324f45620d7d445f30118073e24c3dac"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002002_052.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002002_052.png"
+    },
+    {
+      "id": "002101_001",
+      "scene_id": "002101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/002101_001.jpg",
+          "sha256": "ace7f7e2c4485976ce75d6cd634f1364e52a4d81a6805ab07de7af4310ee93fc"
+        },
+        "mask": {
+          "remote": "data/masks/train/002101_001.png",
+          "sha256": "d9fa47119bbc06a87066375cde961d30b946cded99682fd587e0303e874c8a85"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002101_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002101_001.png"
+    },
+    {
+      "id": "002101_012",
+      "scene_id": "002101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/002101_012.jpg",
+          "sha256": "a65e4c2b6cba94e4e734453071a66009405c8dc6e2e1930d6af9c8d79a60e7e8"
+        },
+        "mask": {
+          "remote": "data/masks/train/002101_012.png",
+          "sha256": "d2003d117da1d76ac306ebd77d8d79e116e0bb1e4fe3b6fee78499ce6dc8d62e"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002101_012.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002101_012.png"
+    },
+    {
+      "id": "002101_023",
+      "scene_id": "002101",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/002101_023.jpg",
+          "sha256": "300955c193e01cf1747beff8c946618c295d8ab3bff9c43c0c1f94e2964794b8"
+        },
+        "mask": {
+          "remote": "data/masks/train/002101_023.png",
+          "sha256": "3f568985f6ea4bf09e8b1b41f137c31ca5ce5a99f88f78d1dc1dcadfc89d5ab0"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002101_023.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002101_023.png"
+    },
+    {
+      "id": "002102_001",
+      "scene_id": "002102",
+      "split": "test",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002102_001.jpg",
+          "sha256": "842dda870a6bfb340ca32249cb211364120908f3064062e560e8fbf111cce156"
+        },
+        "mask": {
+          "remote": "data/masks/val/002102_001.png",
+          "sha256": "0d86d71614d97a5d2c946f2aa4ef2e13a8be4d7627e0d74c48c450b99997d198"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002102_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002102_001.png"
+    },
+    {
+      "id": "002102_021",
+      "scene_id": "002102",
+      "split": "test",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002102_021.jpg",
+          "sha256": "5298ff5080f00a146bbb55158571ec54c2ade68b2a5927a9a7a42b92751c2262"
+        },
+        "mask": {
+          "remote": "data/masks/val/002102_021.png",
+          "sha256": "fee7fb04416e58eca17dd7ba2e790eddb440f90f8b42406817f28eec3d6f8ccc"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002102_021.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002102_021.png"
+    },
+    {
+      "id": "002102_042",
+      "scene_id": "002102",
+      "split": "test",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/002102_042.jpg",
+          "sha256": "d3a2c477e6cacff49a616bde2e245e5d0645ccf09617c076ed768e823a537682"
+        },
+        "mask": {
+          "remote": "data/masks/val/002102_042.png",
+          "sha256": "f029e65c88fa5d8c0bcd6a57016610653c3e007b8d870d0415b12e42fa39a4c7"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/002102_042.jpg",
+      "mask": "data/datasets/aeroscapes/masks/002102_042.png"
+    },
+    {
+      "id": "005000_003",
+      "scene_id": "005000",
+      "split": "development",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/005000_003.jpg",
+          "sha256": "d25dc4a1411063930b7655d0c1bf7fb260c7c3a1ce4c48da94f5d2967006ef66"
+        },
+        "mask": {
+          "remote": "data/masks/val/005000_003.png",
+          "sha256": "03a6627db2d9cf745ee6caaa6bd4089bb5e37362027cdaf759755f1e6fa76e71"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/005000_003.jpg",
+      "mask": "data/datasets/aeroscapes/masks/005000_003.png"
+    },
+    {
+      "id": "005000_022",
+      "scene_id": "005000",
+      "split": "development",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/005000_022.jpg",
+          "sha256": "d46cf38ec62a7a25cb53f9db3823c3b024aa9b0e73a3c0b27f22cad577dba50c"
+        },
+        "mask": {
+          "remote": "data/masks/val/005000_022.png",
+          "sha256": "3dcde567fbb7b79cfcc55c33b196659d2126b1d81f4ad33bc6831bc29c4471ec"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/005000_022.jpg",
+      "mask": "data/datasets/aeroscapes/masks/005000_022.png"
+    },
+    {
+      "id": "005000_041",
+      "scene_id": "005000",
+      "split": "development",
+      "source_split": "val",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/val/005000_041.jpg",
+          "sha256": "2fa60edc76899334d91fadef3086c3ed8397107e691eb13761aa8d11fe28f881"
+        },
+        "mask": {
+          "remote": "data/masks/val/005000_041.png",
+          "sha256": "4b74a682b2784a9b0e80153edb43bc68b4910e340fb34051d0c3136b3d757f78"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/005000_041.jpg",
+      "mask": "data/datasets/aeroscapes/masks/005000_041.png"
+    },
+    {
+      "id": "005001_001",
+      "scene_id": "005001",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/005001_001.jpg",
+          "sha256": "eda5da564688cdc1a7077eb0e1032b6cb29f231442021dd8c1c82f3652a99a0c"
+        },
+        "mask": {
+          "remote": "data/masks/train/005001_001.png",
+          "sha256": "34ee4ce8e72c60e7d9809a526b71de57fe8da814cca1c40443038106019208fb"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/005001_001.jpg",
+      "mask": "data/datasets/aeroscapes/masks/005001_001.png"
+    },
+    {
+      "id": "005001_027",
+      "scene_id": "005001",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/005001_027.jpg",
+          "sha256": "91af4c57f08b05e5bdc55796b8493dfea949697dd48ea5ac9e62ed812bb524d5"
+        },
+        "mask": {
+          "remote": "data/masks/train/005001_027.png",
+          "sha256": "e64a95643f8e4879199fecc152061e9aa91008d7223a59cc47529e192c9118b2"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/005001_027.jpg",
+      "mask": "data/datasets/aeroscapes/masks/005001_027.png"
+    },
+    {
+      "id": "005001_053",
+      "scene_id": "005001",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/005001_053.jpg",
+          "sha256": "0cf8611d4708fc1be2d02909038502c512017850b72ef17808430ef652310fe5"
+        },
+        "mask": {
+          "remote": "data/masks/train/005001_053.png",
+          "sha256": "1f2b3561067f9e20e2a66730fed6f3480c0c53e9679a4bb554def7902e49822f"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/005001_053.jpg",
+      "mask": "data/datasets/aeroscapes/masks/005001_053.png"
+    },
+    {
+      "id": "035000_002",
+      "scene_id": "035000",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/035000_002.jpg",
+          "sha256": "4a04fdf38a67e63f7eb2788d48679670dbde9e5d41bc918c85c09602d067edf4"
+        },
+        "mask": {
+          "remote": "data/masks/train/035000_002.png",
+          "sha256": "66ea712f8a35c5a7d9825c5e6499fc01030b960033066c893ceb4dc5d1b65224"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/035000_002.jpg",
+      "mask": "data/datasets/aeroscapes/masks/035000_002.png"
+    },
+    {
+      "id": "035000_010",
+      "scene_id": "035000",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/035000_010.jpg",
+          "sha256": "54945d1cff84a480b1cbfcffe0d87f8f43e6530bfc7eb5f1750be6731965938c"
+        },
+        "mask": {
+          "remote": "data/masks/train/035000_010.png",
+          "sha256": "31b0f6322ba3e1f0dd2f82b233311e05c320685fdeec7aa1277f93ef5b013973"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/035000_010.jpg",
+      "mask": "data/datasets/aeroscapes/masks/035000_010.png"
+    },
+    {
+      "id": "035000_016",
+      "scene_id": "035000",
+      "split": "development",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/035000_016.jpg",
+          "sha256": "9313ed4be93058a1d2fc4ae451948eb90964b2c1ab5f0a9283ba3364ebe1adcf"
+        },
+        "mask": {
+          "remote": "data/masks/train/035000_016.png",
+          "sha256": "6770f6a7ae8b551ef9f5d2be65aeb0212f66233a4b6e19cec9eb1901ff4bbbdf"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/035000_016.jpg",
+      "mask": "data/datasets/aeroscapes/masks/035000_016.png"
+    },
+    {
+      "id": "035001_002",
+      "scene_id": "035001",
+      "split": "test",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/035001_002.jpg",
+          "sha256": "6f51df9d661a2a302b741943baf771b33e7a134e9228075f3c8747c75bca9e3c"
+        },
+        "mask": {
+          "remote": "data/masks/train/035001_002.png",
+          "sha256": "78d31246d34504e23f7cc473ce91ac4d39768e55b47952ffa6dbb6191b2f2523"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/035001_002.jpg",
+      "mask": "data/datasets/aeroscapes/masks/035001_002.png"
+    },
+    {
+      "id": "035001_014",
+      "scene_id": "035001",
+      "split": "test",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/035001_014.jpg",
+          "sha256": "ea435bd24c41a971af1e78e5982ae78ee9a05bb183835cedf6a55f7008ba654b"
+        },
+        "mask": {
+          "remote": "data/masks/train/035001_014.png",
+          "sha256": "0d74be895b2c32e022d2e42a4ebd726a4874246724d77767da346a23a42e5a10"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/035001_014.jpg",
+      "mask": "data/datasets/aeroscapes/masks/035001_014.png"
+    },
+    {
+      "id": "035001_028",
+      "scene_id": "035001",
+      "split": "test",
+      "source_split": "train",
+      "dataset": "AeroScapes",
+      "annotation_kind": "semantic_proxy",
+      "files": {
+        "image": {
+          "remote": "data/images/train/035001_028.jpg",
+          "sha256": "466eff86f442ff1ddb0785858863dbbe67d48e086d6dc4e32118bbf4338390f7"
+        },
+        "mask": {
+          "remote": "data/masks/train/035001_028.png",
+          "sha256": "45297f39a85cb910b3c4dd215a8c98ec74e757bc24765daadeb9b201ef417731"
+        }
+      },
+      "image": "data/datasets/aeroscapes/images/035001_028.jpg",
+      "mask": "data/datasets/aeroscapes/masks/035001_028.png"
+    }
+  ]
+}

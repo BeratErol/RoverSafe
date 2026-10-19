@@ -1,0 +1,8 @@
+{
+  "preprocessing": {"filter_type": "gaussian", "kernel_size": 5, "use_clahe": false},
+  "terrain": {"window_size": 25, "edge_method": "canny", "canny_low": 50, "canny_high": 150},
+  "segmentation": {"max_edge_density": 0.03, "max_variance": 250, "min_area": 2500,
+    "opening_size": 3, "rover_width": 80, "rover_height": 60, "safety_margin": 10},
+  "scoring": {},
+  "obstacles": null
+}

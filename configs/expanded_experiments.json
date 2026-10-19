@@ -1,0 +1,39 @@
+[
+  {
+    "name": "canny_texture",
+    "config": {
+      "preprocessing": {},
+      "terrain": {},
+      "segmentation": {},
+      "scoring": {}
+    }
+  },
+  {
+    "name": "surface_selected",
+    "config": {
+      "preprocessing": {},
+      "terrain": {},
+      "segmentation": {},
+      "scoring": {},
+      "surface": {
+        "threshold": 0.6
+      }
+    }
+  },
+  {
+    "name": "surface_yolo",
+    "config": {
+      "preprocessing": {},
+      "terrain": {},
+      "segmentation": {},
+      "scoring": {},
+      "surface": {
+        "threshold": 0.6
+      },
+      "obstacles": {
+        "model_path": "models/yolo11n.pt",
+        "device": "cpu"
+      }
+    }
+  }
+]

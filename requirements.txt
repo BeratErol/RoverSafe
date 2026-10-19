@@ -1,0 +1,4 @@
+numpy>=2.0,<3
+opencv-python>=4.10,<5
+matplotlib>=3.9,<4
+pillow>=9,<13
