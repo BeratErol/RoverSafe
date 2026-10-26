@@ -39,6 +39,17 @@ Depodaki örnek görüntüyü analiz etmek için:
 
 Sonuçlar `outputs/demo/` klasörüne kaydedilir.
 
+Model veya veri indirmeden metre tabanlı sentetik örnek çalıştırmak için:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-geospatial.txt
+.\.venv\Scripts\python.exe scripts/create_start_area_sample.py --output-dir outputs/sample_inputs
+.\.venv\Scripts\python.exe main.py start-area --manifest outputs/sample_inputs/manifest.json --output-dir outputs/sample_result
+.\.venv\Scripts\python.exe scripts/verify_start_area.py --output-dir outputs/acceptance
+```
+
+Son komut düz zemin, engel, dar geçit, eğim, eksik/belirsiz yükseklik ve sabit başlangıç dahil 12 senaryoyu denetler; JSON, CSV ve Markdown özeti üretir. Her çalıştırmada yeni veya boş çıktı klasörü kullanın. Bu sentetik kontroller yazılım davranışını sınar; gerçek arazi algılamasını veya fiziksel emniyeti doğrulamaz.
+
 ### Proje yapısı
 
 | Klasör | İçerik |
@@ -96,6 +107,17 @@ Analyze the sample image included in the repository:
 ```
 
 Results are saved to `outputs/demo/`.
+
+Run a metric synthetic example without downloading models or datasets:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-geospatial.txt
+.\.venv\Scripts\python.exe scripts/create_start_area_sample.py --output-dir outputs/sample_inputs
+.\.venv\Scripts\python.exe main.py start-area --manifest outputs/sample_inputs/manifest.json --output-dir outputs/sample_result
+.\.venv\Scripts\python.exe scripts/verify_start_area.py --output-dir outputs/acceptance
+```
+
+The final command checks 12 scenarios covering flat terrain, obstacles, narrow passages, slopes, missing/uncertain elevation, and fixed starts; it writes JSON, CSV, and Markdown summaries. Use a new or empty output directory for each run. These synthetic checks verify software behavior, not real terrain perception or physical safety.
 
 ### Project structure
 

@@ -154,4 +154,7 @@ def select_start_site(terrain: ElevationResult, profile: RoverProfile, mission: 
           'max_slope_deg':float(worst[0][y,x]),'roughness_m':float(worst[1][y,x]),
           'local_step_indicator_m':float(worst[2][y,x]),'clearance_m':float(clearance[y,x]),
           'route_length_m':float(sum(hypot((b[0]-a[0])*dx,(b[1]-a[1])*dy) for a,b in zip(route,route[1:]))) }
+    route_x, route_y = np.asarray(route).T
+    best['route_min_clearance_m'] = float(clearance[route_y, route_x].min())
+    best['required_motion_radius_m'] = radius
     return result('fixed_start_accepted' if mission.mode == 'assess_fixed_start' else 'candidate_selected',best,route)
