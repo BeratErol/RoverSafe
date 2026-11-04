@@ -96,6 +96,9 @@ class StartPerceptionTests(unittest.TestCase):
                 dst.write(array)
         path = root/'manifest.json'
         path.write_text(json.dumps(spec),encoding='utf-8')
+        # Algılayıcılar taklit edilir; izlenebilirlik için yerel dosyalar yine mevcut olmalı.
+        (root/'model.joblib').write_bytes(b'fixture model')
+        (root/'yolo.pt').write_bytes(b'fixture detector')
         return spec,path
 
     def test_predicted_run_needs_no_reference_and_object_wall_rejects(self):
