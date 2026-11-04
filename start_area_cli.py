@@ -3,6 +3,7 @@
 import argparse
 from dataclasses import asdict
 import json
+import platform
 from pathlib import Path
 import cv2
 import numpy as np
@@ -13,9 +14,10 @@ from rover_profile import RoverProfile
 from start_site_selection import select_start_site
 from start_area_perception import estimate_surfaces
 from obstacle_detection import ObstacleDetectionError
+from start_area_export import EXPORT_ARTIFACTS, export_decision, fingerprint_inputs
 
 
-OUTPUT_ARTIFACTS = ('maps.npz','elevation_quality.npz','perception.npz','selection.png')
+OUTPUT_ARTIFACTS = ('maps.npz','elevation_quality.npz','perception.npz','selection.png', *EXPORT_ARTIFACTS)
 
 
 def input_paths(manifest_path, spec):
@@ -47,6 +49,7 @@ def _run(manifest_path, output_dir):
     terrain = analyze_elevation(data.elevation, data.dx, data.dy, spec.get('window_size', 5),
                                 quality_mask=data.elevation_validity,error_bound_m=data.elevation_error_bound_m)
     perception = estimate_surfaces(data, manifest_path)
+    fingerprints = fingerprint_inputs(protected, manifest_path)
     result = select_start_site(terrain, profile, mission, data.dx, data.dy,
                               ground_mask=perception.ground, allowed_mask=data.allowed,
                               start_zone=data.start_zone, obstacle_mask=perception.obstacles)
@@ -68,6 +71,8 @@ def _run(manifest_path, output_dir):
               'dataset_source': spec['dataset_source'], 'ground_mask_source': spec['ground_mask_source'],
               'mission_source': spec['mission_source'],
               'input_manifest': spec,
+              'input_fingerprints': fingerprints,
+              'runtime': {'python': platform.python_version(), 'numpy': np.__version__, 'opencv': cv2.__version__},
               'perception': perception.metadata,
               'analysis_settings': {'window_size_px':terrain.window_size,
                                     'score_weights':{'slope':.4,'roughness':.3,'local_step':.1,'clearance':.2},
@@ -110,24 +115,49 @@ def _run(manifest_path, output_dir):
         cv2.drawMarker(overlay, tuple(mission.fixed_start_pixel), (255, 0, 255), cv2.MARKER_CROSS, 15, 2)
     if mission.exit_pixel:
         cv2.circle(overlay, tuple(mission.exit_pixel), 5, (255, 180, 0), -1)
-    cv2.putText(overlay, result.status, (10, 25), cv2.FONT_HERSHEY_SIMPLEX, .55, (255, 255, 255), 2)
+    display_scale = max(1, min(4, int(np.ceil(360/overlay.shape[0]))))
+    if display_scale > 1:
+        overlay = cv2.resize(overlay, None, fx=display_scale, fy=display_scale, interpolation=cv2.INTER_NEAREST)
+    # Açıklamalar haritanın üstünü örtmez; küçük girdilerde de okunabilir kalır.
+    map_height, map_width = overlay.shape[:2]
+    canvas = np.full((max(map_height, 360), map_width+400, 3), 28, dtype='uint8')
+    canvas[:map_height, :map_width] = overlay
+    panel_x = map_width+16
+    cv2.putText(canvas, 'RoverSafe', (panel_x, 28), cv2.FONT_HERSHEY_SIMPLEX, .7, (255,255,255), 2)
+    cv2.putText(canvas, result.status, (panel_x, 54), cv2.FONT_HERSHEY_SIMPLEX, .48, (255,255,255), 1)
     for index, (label, color) in enumerate([
-        ('Excluded', (30,30,220)), ('Reachable centers', (40,200,40)),
-        ('Selected footprint', (0,255,255)), ('Route / exit', (255,255,0))]):
-        y = 50 + index*22
-        cv2.rectangle(overlay,(8,y-12),(24,y),color,-1)
-        cv2.putText(overlay,label,(30,y),cv2.FONT_HERSHEY_SIMPLEX,.45,(255,255,255),1)
-    cv2.putText(overlay, 'Research demo - see provenance in result.json', (10,150),
-                cv2.FONT_HERSHEY_SIMPLEX,.45,(255,255,255),1)
-    cv2.putText(overlay, f"Ground: {perception.metadata['ground_mode']} | Objects: "
-                f"{'on' if perception.metadata['obstacles']['enabled'] else 'off'}", (10,172),
-                cv2.FONT_HERSHEY_SIMPLEX,.45,(255,255,255),1)
-    cv2.putText(overlay,f"Elevation: {data.quality_config.mode}",(10,194),
-                cv2.FONT_HERSHEY_SIMPLEX,.45,(255,255,255),1)
-    ok, encoded = cv2.imencode('.png', overlay)
+        ('Excluded / unknown', (30,30,220)), ('Reachable start centers', (40,200,40)),
+        ('Selected footprint', (0,255,255)), ('Route', (255,255,0)), ('Exit', (255,180,0))]):
+        y = 84 + index*23
+        cv2.rectangle(canvas,(panel_x,y-12),(panel_x+16,y),color,-1)
+        cv2.putText(canvas,label,(panel_x+25,y),cv2.FONT_HERSHEY_SIMPLEX,.45,(255,255,255),1)
+    lines = [f"Ground: {perception.metadata['ground_mode']} | Objects: "
+             f"{'on' if perception.metadata['obstacles']['enabled'] else 'off'}",
+             f'Elevation: {data.quality_config.mode}',
+             f'Rover: {profile.width_m:g} x {profile.length_m:g} m; margin {profile.margin_m:g} m']
+    if result.best:
+        lines += [f"Route length: {result.best['route_length_m']:.2f} m",
+                  f"Route clearance: {result.best['route_min_clearance_m']:.2f} m"]
+    else:
+        exit_checks=result.point_checks.get('exit',{})
+        failed = exit_checks.get('failed_center_constraints',[])
+        envelope=exit_checks.get('failed_motion_envelope_constraints',{})
+        if failed:
+            lines += ['Exit center: '+', '.join(failed)]
+        elif envelope:
+            lines += ['Exit envelope: '+', '.join(envelope)]
+        elif exit_checks.get('motion_envelope_outside_raster_cells',0):
+            lines += ['Exit envelope: outside image']
+        else:
+            lines += ['See point_checks in result.json']
+    lines += ['Screening result; see result.json']
+    for index,line in enumerate(lines):
+        cv2.putText(canvas,line,(panel_x,218+index*22),cv2.FONT_HERSHEY_SIMPLEX,.43,(225,225,225),1)
+    ok, encoded = cv2.imencode('.png', canvas)
     if not ok:
         raise OSError('Görselleştirme kodlanamadı.')
     encoded.tofile(output_dir / 'selection.png')
+    export_decision(data, result, mission, output_dir)
     return report
 
 

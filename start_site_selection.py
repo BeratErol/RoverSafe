@@ -10,6 +10,7 @@ from scipy.ndimage import distance_transform_edt
 from elevation_analysis import ElevationResult
 from mission_constraints import MissionConfig
 from rover_profile import RoverProfile
+from decision_diagnostics import footprint_checks
 from segmentation import SegmentationConfig, find_valid_centers
 
 
@@ -107,6 +108,9 @@ def select_start_site(terrain: ElevationResult, profile: RoverProfile, mission: 
                 'failed_center_constraints':[key for key,mask in checks.items() if mask[y,x]],
                 'usable_clearance_m':max(0.0,float(clearance[y,x])),
                 'required_motion_radius_m':radius,'motion_clearance_ok':bool(motion[y,x])}
+            details[name].update(footprint_checks(point,checks,zone,width,height,radius,dx,dy))
+            if name == 'exit':
+                details[name].pop('footprint_outside_start_zone_cells')
             for label,maps in (('center_observed',(terrain.slope_deg,terrain.roughness_m,terrain.step_m)),
                                ('center_decision',decision_maps)):
                 details[name][label] = {key:float(value[y,x]) if np.isfinite(value[y,x]) else None
