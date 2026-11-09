@@ -33,6 +33,9 @@ def estimate_surfaces(data, manifest_path):
         if 'model_path' not in settings:
             raise ValueError('Tahmin modunda yerel model_path açıkça verilmeli.')
         settings['model_path'] = str(base / settings['model_path'])
+        if settings.get('encoder_path') is not None:
+            settings['encoder_path'] = str(base/settings['encoder_path'])
+        settings.setdefault('expected_viewpoint','aerial')
         config = SurfaceConfig(**settings)
         predictor = SurfacePredictor(config)
         selection = spec.get('surface_selection')
@@ -40,7 +43,8 @@ def estimate_surfaces(data, manifest_path):
             raise ValueError('surface_selection bir JSON nesnesi olmalı.')
         if selection is not None and (selection.get('split') != 'validation'
                 or selection.get('model_sha256') != predictor.model_sha256
-                or selection.get('threshold') != config.threshold):
+                or selection.get('threshold') != config.threshold
+                or ('feature_grid_step' in selection and selection['feature_grid_step'] != config.grid_step)):
             raise ValueError('Model veya eşik dondurulmuş doğrulama seçimiyle uyuşmuyor.')
         prediction = predictor.predict(bgr)
         score = prediction.probability
@@ -49,7 +53,11 @@ def estimate_surfaces(data, manifest_path):
         ground = (score >= config.threshold) & data.rgb_valid
         metadata = {'ground_mode':'predicted', 'source':spec['ground_mask_source'],
                     'surface':asdict(config), 'model_sha256':predictor.model_sha256,
+                    'feature_version':getattr(predictor,'feature_version','unspecified'),
+                    'model_viewpoint':getattr(predictor,'viewpoint','unspecified'),
                     'score_note':'Uncalibrated visual class score, not physical safety probability.'}
+        if getattr(predictor,'encoder',None) is not None:
+            metadata['encoder_sha256'] = predictor.encoder.sha256
         if selection is not None:
             metadata['surface_selection'] = selection
     blocked = np.zeros(data.rgb.shape[:2], dtype=bool)

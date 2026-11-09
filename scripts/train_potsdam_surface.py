@@ -12,7 +12,7 @@ import numpy as np
 import sklearn
 from sklearn.ensemble import ExtraTreesClassifier
 from potsdam_data import PALETTE, build_protocol, iter_patches, sha256
-from surface_classification import FEATURE_VERSION, SurfaceConfig, SurfacePredictor, feature_grid
+from surface_classification import FEATURE_VERSION, FEATURE_COUNTS, FEATURE_BORDERS, SurfaceConfig, SurfacePredictor, feature_grid
 
 
 def metric_counts(score, binary, threshold):
@@ -32,22 +32,28 @@ def metrics(counts):
             'f0_5':1.25*tp/(1.25*tp+.25*fn+fp) if 1.25*tp+.25*fn+fp else 0.0}
 
 
-def train(protocol, output):
+def train(protocol, output, *, feature_version=FEATURE_VERSION, samples_per_class=None):
+    if feature_version not in FEATURE_COUNTS:
+        raise ValueError('Bilinmeyen özellik sürümü.')
     spec = json.loads(Path(protocol).read_text(encoding='utf-8'))
+    per_class = spec['max_samples_per_class_per_patch'] if samples_per_class is None else samples_per_class
+    if type(per_class) is not int or per_class < 1:
+        raise ValueError('Sınıf başına örnek sayısı pozitif tam sayı olmalı.')
     rng = np.random.default_rng(spec['seed'])
     xs,ys,used = [],[],[]
     start = perf_counter()
     for tile,crop,rgb,binary,_ in iter_patches(protocol,'development'):
-        features = feature_grid(cv2.cvtColor(rgb,cv2.COLOR_RGB2BGR),4)
+        features = feature_grid(cv2.cvtColor(rgb,cv2.COLOR_RGB2BGR),4,feature_version)
         labels = binary[::4,::4].copy()
         # Özelliklerin yansıtma sınırı eğitim örneği olmaz (9x9 doku penceresi).
-        labels[:2] = labels[-2:] = -1
-        labels[:,:2] = labels[:,-2:] = -1
-        flat = features.reshape(-1,14)
+        edge = int(np.ceil(FEATURE_BORDERS[feature_version]/4))
+        labels[:edge] = labels[-edge:] = -1
+        labels[:,:edge] = labels[:,-edge:] = -1
+        flat = features.reshape(-1,FEATURE_COUNTS[feature_version])
         for value in (0,1):
             indices = np.flatnonzero(labels.ravel() == value)
             if len(indices):
-                chosen = rng.choice(indices,min(spec['max_samples_per_class_per_patch'],len(indices)),replace=False)
+                chosen = rng.choice(indices,min(per_class,len(indices)),replace=False)
                 xs.append(flat[chosen]); ys.append(np.full(len(chosen),value,np.uint8))
         used.append({'tile':tile,'window':crop})
         if len(used)%10 == 0:
@@ -60,13 +66,14 @@ def train(protocol, output):
     model.fit(x,y)
     output = Path(output)
     output.parent.mkdir(parents=True,exist_ok=True)
-    joblib.dump({'feature_version':FEATURE_VERSION,'model':model},output,compress=3)
-    metadata = {'feature_version':FEATURE_VERSION,'dataset':'ISPRS Potsdam / BSF Swissphoto',
+    joblib.dump({'feature_version':feature_version,'viewpoint':'aerial','model':model},output,compress=3)
+    metadata = {'feature_version':feature_version,'dataset':'ISPRS Potsdam / BSF Swissphoto',
                 'training_split':'development','used_windows':used,'pixel_count':len(y),
                 'class_counts':np.bincount(y).tolist(),'seed':spec['seed'],
                 'protocol_sha256':sha256(protocol),'model_sha256':sha256(output),
                 'sklearn_version':sklearn.__version__,'parameters':model.get_params(),
-                'feature_grid_step':4,'positive_class':'impervious surfaces; not physical safety',
+                'feature_grid_step':4,'feature_border_px':FEATURE_BORDERS[feature_version],
+                'max_samples_per_class_per_patch':per_class,'positive_class':'impervious surfaces; not physical safety',
                 'seconds':perf_counter()-start,
                 'code_sha256':{name:sha256(Path(__file__).resolve().parents[1]/name) for name in
                                ('potsdam_data.py','surface_classification.py','scripts/train_potsdam_surface.py')}}
@@ -83,7 +90,7 @@ def select_threshold(protocol, model_path, destination):
     predictor = SurfacePredictor(SurfaceConfig(model_path=str(model_path),grid_step=4))
     totals = {threshold:np.zeros(4,dtype='int64') for threshold in spec['threshold_candidates']}
     windows_used = []
-    border = spec['feature_border_px']
+    border = max(spec['feature_border_px'],FEATURE_BORDERS[predictor.feature_version])
     for tile,crop,rgb,binary,_ in iter_patches(protocol,'validation'):
         score = predictor.predict(cv2.cvtColor(rgb,cv2.COLOR_RGB2BGR)).probability
         for threshold,counts in totals.items():

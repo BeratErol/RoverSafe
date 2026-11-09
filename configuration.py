@@ -67,5 +67,6 @@ def cli_defaults(path: str | Path) -> dict:
     config = options["surface_config"]
     if config is not None:
         defaults.update(surface=True, surface_model=config.model_path, surface_threshold=config.threshold,
-                        surface_grid_step=config.grid_step)
+                        surface_grid_step=config.grid_step,surface_encoder=config.encoder_path,
+                        surface_viewpoint=config.expected_viewpoint)
     return defaults

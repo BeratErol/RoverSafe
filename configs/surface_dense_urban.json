@@ -1,0 +1,9 @@
+{
+  "surface": {
+    "model_path": "outputs/dense_aerial_full/surface_dense.pth",
+    "encoder_path": "models/resnet18-f37072fd.pth",
+    "threshold": 0.6,
+    "grid_step": 4,
+    "expected_viewpoint": "aerial"
+  }
+}

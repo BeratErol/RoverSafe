@@ -13,6 +13,7 @@ RoverSafe, drone ve İHA görüntülerinden rover için uygun başlangıç alanl
 - Rover ayak izi ve çevre payına göre aday alan belirleme
 - YOLO ile isteğe bağlı nesne tespiti
 - Öğrenilmiş yüzey modeliyle zemin ayrımı
+- Çok ölçekli özellikler ve ResNet18 tabanlı yoğun hava modeli
 - Yükseklik haritasıyla eğim, pürüzlülük ve yerel yükseklik aralığı analizi
 - İzinli bölgede alan seçimi veya sabit başlangıç noktasını değerlendirme
 - Çıkış noktasına rota oluşturma
@@ -66,6 +67,7 @@ Son komut düz zemin, engel, dar geçit, eğim, eksik/belirsiz yükseklik ve sab
 - [Kullanım ve çalışma seçenekleri](docs/KULLANIM.md)
 - [Veri kaynakları](data/SOURCES.md)
 - [Modeller](models/README.md)
+- [Model eğitimi ve yöntem karşılaştırması](docs/MODEL_EGITIMI.md)
 
 Büyük veri dosyaları, model ağırlıkları ve üretilen çıktılar depoya eklenmez.
 
@@ -82,6 +84,7 @@ RoverSafe is a Python-based terrain analysis application that identifies suitabl
 - Candidate region extraction based on rover footprint and clearance margin
 - Optional object detection with YOLO
 - Ground classification using a trained surface model
+- Multiscale features and a ResNet18-based dense aerial model
 - Slope, roughness, and local height range analysis from elevation maps
 - Site selection within an allowed region or assessment of a fixed starting point
 - Route generation to an exit point
@@ -135,5 +138,6 @@ The final command checks 12 scenarios covering flat terrain, obstacles, narrow p
 - [Usage and options (Turkish)](docs/KULLANIM.md)
 - [Data sources (Turkish)](data/SOURCES.md)
 - [Models (Turkish)](models/README.md)
+- [Model training and method comparison (Turkish)](docs/MODEL_EGITIMI.md)
 
 Large datasets, model weights, and generated outputs are not included in the repository.

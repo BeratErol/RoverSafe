@@ -54,10 +54,11 @@ class StartPerceptionTests(unittest.TestCase):
 
     def test_frozen_selection_rejects_model_or_threshold_changes(self):
         data = self.inputs()
-        data.manifest['surface_selection'] = {'split':'validation','model_sha256':'fixture_hash','threshold':.6}
+        data.manifest['surface_selection'] = {'split':'validation','model_sha256':'fixture_hash','threshold':.6,
+                                              'feature_grid_step':4}
         with patch('start_area_perception.SurfacePredictor',return_value=self.predictor(np.ones((120,160)))):
             self.assertEqual(estimate_surfaces(data,'manifest.json').metadata['surface_selection']['threshold'],.6)
-            for key,value in (('threshold',.5),('model_sha256','other_model'),('split','test')):
+            for key,value in (('threshold',.5),('model_sha256','other_model'),('split','test'),('feature_grid_step',8)):
                 old = data.manifest['surface_selection'][key]
                 data.manifest['surface_selection'][key] = value
                 with self.assertRaisesRegex(ValueError,'dondurulmuş'):

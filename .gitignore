@@ -35,3 +35,5 @@ reports/runs/
 # Unreviewed annotation drafts
 /data/annotations/manual/
 /data/manifests/manual_visual.json
+
+!/docs/MODEL_EGITIMI.md

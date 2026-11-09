@@ -84,6 +84,9 @@ def process_frame(
         "obstacles": asdict(obstacle_config) if obstacle_config is not None else None,
         "surface": asdict(surface_config) if surface_config is not None else None,
         "surface_model_sha256": surface.model_sha256 if surface is not None else None,
+        'surface_encoder_sha256':getattr(surface,'encoder_sha256',None),
+        'surface_feature_version':getattr(surface,'feature_version',None),
+        'surface_viewpoint':getattr(surface,'viewpoint',None),
     }
     return FrameResult(result, terrain, candidates, scoring, obstacles, settings, surface)
 

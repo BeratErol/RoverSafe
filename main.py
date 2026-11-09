@@ -68,6 +68,8 @@ def main() -> int:
     parser.add_argument("--surface-model", help="Yerel yüzey modeli yolu")
     parser.add_argument("--surface-threshold", type=float, help="Yüzey sınıf puanı eşiği (güvenlik olasılığı değildir)")
     parser.add_argument("--surface-grid-step", type=int, help="Yüzey özellik örnekleme adımı; varsayılan 4")
+    parser.add_argument('--surface-encoder',help='Bağlam modeli için yerel kodlayıcı ağırlığı')
+    parser.add_argument('--surface-viewpoint',choices=['any','aerial','ground'],help='Yüzey modelinin beklenen bakış açısı')
     preliminary, _ = parser.parse_known_args()
     if preliminary.config is not None:
         try:
@@ -99,7 +101,8 @@ def main() -> int:
     if args.obstacle_classes is not None:
         obstacle_options["classes"] = tuple(args.obstacle_classes)
     surface_options = {field: getattr(args, option) for field, option in (
-        ("model_path", "surface_model"), ("threshold", "surface_threshold"), ("grid_step", "surface_grid_step"))
+        ("model_path", "surface_model"), ("threshold", "surface_threshold"), ("grid_step", "surface_grid_step"),
+        ('encoder_path','surface_encoder'),('expected_viewpoint','surface_viewpoint'))
         if getattr(args, option) is not None}
     if surface_options and not args.surface:
         parser.error("Yüzey ayarları için --surface gerekli.")

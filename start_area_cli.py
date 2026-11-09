@@ -29,7 +29,7 @@ def input_paths(manifest_path, spec):
     for key in ('rgb','elevation','ground_mask','allowed_mask','start_zone'):
         if isinstance(spec.get(key),str):
             paths.add((manifest.parent/spec[key]).resolve())
-    for section,keys in (('surface',('model_path',)),('obstacles',('model_path',)),
+    for section,keys in (('surface',('model_path','encoder_path')),('obstacles',('model_path',)),
                          ('elevation_quality',('validity_mask','error_bound_raster'))):
         if isinstance(spec.get(section),dict):
             for key in keys:
