@@ -9,7 +9,7 @@ import rasterio
 from rasterio.warp import transform
 
 
-EXPORT_ARTIFACTS = ('selection.geojson', 'decision.tif')
+EXPORT_ARTIFACTS = ('selection.geojson', 'decision.tif', 'traversability.tif')
 
 
 def fingerprint_inputs(paths, manifest_path):
@@ -65,12 +65,20 @@ def export_decision(data, result, mission, output_dir):
     classes = np.zeros(result.traversable.shape, dtype='uint8')
     classes[result.traversable] = 1
     classes[result.valid_centers] = 2
-    classes[result.reachable_centers] = 3
+    classes[result.eligible_centers if result.eligible_centers is not None else result.reachable_centers] = 3
     with rasterio.open(output/'decision.tif', 'w', driver='GTiff',
                        height=classes.shape[0], width=classes.shape[1], count=1,
                        dtype='uint8', crs=data.crs, transform=data.transform, compress='deflate') as dst:
         dst.write(classes, 1)
         dst.set_band_description(1, 'decision_class')
         dst.update_tags(classes=json.dumps({'0': 'excluded_or_unknown', '1': 'terrain_eligible',
-                                           '2': 'valid_start_center', '3': 'reachable_start_center'}),
+                                           '2': 'valid_start_center', '3': 'eligible_reachable_start_center'}),
                         status=result.status, interpretation='Screening classes, not safety probabilities')
+    with rasterio.open(output/'traversability.tif','w',driver='GTiff',
+                       height=classes.shape[0],width=classes.shape[1],count=2,dtype='float32',
+                       crs=data.crs,transform=data.transform,nodata=-9999,compress='deflate') as dst:
+        for band,(name,values) in enumerate((('terrain_severity',result.terrain_risk),
+                                             ('cost_per_meter',result.route_cost_map)),start=1):
+            dst.write(np.where(np.isfinite(values),values,-9999).astype('float32'),band)
+            dst.set_band_description(band,name)
+        dst.update_tags(interpretation='Heuristic terrain severity and route cost, not safety probabilities')

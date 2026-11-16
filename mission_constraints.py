@@ -1,6 +1,7 @@
 """Görev sınırları ve sabit başlangıç kuralını teknik analizden ayrı tutar."""
 
 from dataclasses import dataclass
+from math import isfinite
 
 
 @dataclass(frozen=True)
@@ -9,6 +10,7 @@ class MissionConfig:
     fixed_start_pixel: tuple[int, int] | None = None
     exit_pixel: tuple[int, int] | None = None
     rule_context: str = "research_example_not_competition_approval"
+    min_start_exit_distance_m: float = 0.0
 
     def __post_init__(self):
         if self.mode not in {"select_within_zone", "assess_fixed_start"}:
@@ -24,3 +26,8 @@ class MissionConfig:
             raise ValueError("Seçim modunda sabit başlangıç verilmez.")
         if not isinstance(self.rule_context, str) or not self.rule_context:
             raise ValueError("Görev bağlamı gerekli.")
+        if (type(self.min_start_exit_distance_m) not in (int,float)
+                or not isfinite(self.min_start_exit_distance_m) or self.min_start_exit_distance_m < 0):
+            raise ValueError('Başlangıç–çıkış mesafesi negatif olmayan sonlu metre olmalı.')
+        if self.min_start_exit_distance_m > 0 and self.exit_pixel is None:
+            raise ValueError('Asgari başlangıç–çıkış mesafesi için çıkış noktası gerekli.')

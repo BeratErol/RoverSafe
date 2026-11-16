@@ -91,3 +91,36 @@ Metre tabanlı akış `result.json`, `selection.png`, `maps.npz`, `perception.np
 ```
 
 Bağımlılık sürümlerini sabitlemek için ilgili `requirements-*-lock.txt` dosyaları kullanılabilir. Çalıştırma seçeneklerinin tamamı için `main.py --help` ve `main.py start-area --help` komutlarına bakın.
+
+## Referans rover profili
+
+`configs/rover_husky_a200.json` yayımlanmış Husky A200 boyutlarını ve proje varsayımlarını ayırır. Metre tabanlı görevde dosyanın `profile` nesnesini manifestin `rover` alanına, kaynak bilgisini kaydetmek için `provenance` nesnesini `rover_profile_provenance` alanına kopyalayın. Eğim ve hareket sınırları sahada ölçülmemiştir.
+
+## Arazi maliyetine göre rota seçimi
+
+Metre tabanlı görev manifestine aşağıdaki bölüm eklenebilir:
+
+```json
+"routing": {
+  "mode": "terrain_cost",
+  "terrain_weight": 4.0,
+  "clearance_weight": 1.0
+}
+```
+
+Varsayılan `mode: shortest` geometrik uzunluğu en aza indirir. `terrain_cost`, zorunlu koşulları geçen hücrelerde eğim/pürüzlülük/yerel yükseklik şiddetini ve engel yakınlığını da dikkate alır. Ağırlıklar 0–100 arasında sonlu sayılardır; saha kalibrasyonu değildir. İki ağırlık da sıfırsa geometrik mesafe maliyeti kalır. Başlangıç alanı sıralaması değişmez; rota seçilen noktadan hesaplanır.
+
+JSON'daki `route_cost_m_equivalent` mesafe ağırlıklı sezgisel maliyettir; gerçek enerji veya emniyet olasılığı değildir. `route_max_terrain_risk` ve `route_mean_terrain_risk` aynı sezgisel arazi şiddetini özetler. Daha düşük maliyet daha kısa rota anlamına gelmez. Maliyet karşılaştırırken aynı ağırlıklar kullanılmalıdır.
+
+`maps.npz` içinde `terrain_risk` ve `route_cost` haritaları bulunur. `traversability.tif`, kaynak CRS/ızgarada iki bant içerir: `terrain_severity` ve `cost_per_meter`; uygun hareket merkezleri dışındaki nodata değeri -9999'dur.
+
+## Başlangıç ile çıkış arasında asgari mesafe
+
+Metre tabanlı manifestin `mission` bölümüne `"min_start_exit_distance_m": 5.0` eklenebilir. Bir `exit_pixel` gerekir. Değer başlangıç ve çıkış arasındaki kuş uçuşu mesafenin alt sınırıdır; rota uzunluğunu eniyileyen bir hedef değildir. Varsayılan `0.0`, mevcut seçimi korur. Eğim, engel ve rover açıklığı koşulları değişmez. Koşulu sağlayan başlangıç bulunamazsa kısa rotaya dönülmez.
+
+| Karar | Anlamı |
+| --- | --- |
+| `no_start_meets_exit_distance` | Çıkışa bağlı fiziksel adaylar var; hiçbiri mesafe koşulunu sağlamıyor. |
+| `fixed_start_too_close_to_exit` | Sabit başlangıç fiziksel koşulları geçiyor ancak çıkışa fazla yakın. Nokta taşınmaz. |
+
+`best.distance_to_exit_m` kuş uçuşu mesafeyi, `route_length_m` bulunan rotayı gösterir. `maps.npz` içindeki `reachable` fiziksel bağlantıyı korur; `eligible_start` ayrıca asgari mesafeyi uygular. Görseldeki yeşil alanlar ve `decision.tif` sınıf 3 uygun başlangıç merkezleridir.

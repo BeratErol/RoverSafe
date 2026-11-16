@@ -1,0 +1,32 @@
+{
+  "profile": {
+    "name": "clearpath_husky_a200_published_reference",
+    "width_m": 0.67,
+    "length_m": 0.99,
+    "margin_m": 0.2,
+    "max_slope_deg": 10.0,
+    "max_roughness_m": 0.02,
+    "max_step_m": 0.05,
+    "min_cells_across": 8,
+    "source": "Clearpath Husky A200 manual for dimensions. Analysis limits are conservative project assumptions, not measured or manufacturer-certified terrain capability.",
+    "verified": false
+  },
+  "provenance": {
+    "source_url": "https://docs.clearpathrobotics.com/docs_robots/outdoor_robots/husky/a200/user_manual_husky/",
+    "manufacturer_published": {
+      "width_m": 0.67,
+      "length_m": 0.99,
+      "ground_clearance_m": 0.13,
+      "climb_grade_deg": 45.0,
+      "sideslope_deg": 30.0
+    },
+    "dimension_status": "manufacturer_published_reference",
+    "analysis_limit_status": "project_assumptions_not_field_validated",
+    "notes": [
+      "A200 base model, not Observer or A300; payload and mounting geometry are not included.",
+      "Ground clearance is not step-climbing capability.",
+      "The scalar 10-degree analysis limit is not a certified operating envelope.",
+      "The verified flag remains false because the complete operational profile was not field-tested."
+    ]
+  }
+}

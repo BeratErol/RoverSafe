@@ -15,6 +15,7 @@ from start_site_selection import select_start_site
 from start_area_perception import estimate_surfaces
 from obstacle_detection import ObstacleDetectionError
 from start_area_export import EXPORT_ARTIFACTS, export_decision, fingerprint_inputs
+from route_cost import RoutingConfig
 
 
 OUTPUT_ARTIFACTS = ('maps.npz','elevation_quality.npz','perception.npz','selection.png', *EXPORT_ARTIFACTS)
@@ -46,17 +47,21 @@ def _run(manifest_path, output_dir):
         raise ValueError('Çıktı dosyası bir giriş dosyasıyla çakışıyor; farklı çıktı klasörü seçin.')
     profile = RoverProfile(**spec.get('rover', {}))
     mission = MissionConfig(**spec['mission'])
+    routing = RoutingConfig(**spec.get('routing',{}))
     terrain = analyze_elevation(data.elevation, data.dx, data.dy, spec.get('window_size', 5),
                                 quality_mask=data.elevation_validity,error_bound_m=data.elevation_error_bound_m)
     perception = estimate_surfaces(data, manifest_path)
     fingerprints = fingerprint_inputs(protected, manifest_path)
     result = select_start_site(terrain, profile, mission, data.dx, data.dy,
                               ground_mask=perception.ground, allowed_mask=data.allowed,
-                              start_zone=data.start_zone, obstacle_mask=perception.obstacles)
+                              start_zone=data.start_zone, obstacle_mask=perception.obstacles,routing=routing)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     report = {'report_type':'roversafe_start_area_v1','status': result.status, 'best': result.best, 'artifacts_valid':True, 'rover': asdict(profile),
               'mission': asdict(mission), 'crs': data.crs.to_string(),
+              'routing':{**asdict(routing),'cost_meaning':'Distance weighted by terrain severity and obstacle proximity; not energy or safety probability.',
+                         'terrain_components':{'slope':.5,'roughness':.3,'local_step':.2},
+                         'site_selection':'Site ranking is independent of route cost; routing optimizes the route from the selected site.'},
               'transform_gdal': list(data.transform.to_gdal()),
               'shape_rows_columns': list(data.elevation.shape),
               'resolution_m': [data.dx, data.dy], 'rejected_pixels': result.rejected_pixels,
@@ -67,10 +72,12 @@ def _run(manifest_path, output_dir):
                                    if terrain.slope_upper_deg is not None else 'No vertical accuracy bound supplied; nominal screening only.'},
               'counts': {'traversable_pixels':int(result.traversable.sum()),
                          'valid_center_pixels':int(result.valid_centers.sum()),
-                         'reachable_center_pixels':int(result.reachable_centers.sum())},
+                         'reachable_center_pixels':int(result.reachable_centers.sum()),
+                         'eligible_start_center_pixels':int(result.eligible_centers.sum())},
               'dataset_source': spec['dataset_source'], 'ground_mask_source': spec['ground_mask_source'],
               'mission_source': spec['mission_source'],
               'input_manifest': spec,
+              'rover_profile_provenance':spec.get('rover_profile_provenance'),
               'input_fingerprints': fingerprints,
               'runtime': {'python': platform.python_version(), 'numpy': np.__version__, 'opencv': cv2.__version__},
               'perception': perception.metadata,
@@ -90,8 +97,9 @@ def _run(manifest_path, output_dir):
     (output_dir / 'result.json').write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
     np.savez_compressed(output_dir / 'maps.npz', slope_deg=terrain.slope_deg,
                         roughness_m=terrain.roughness_m, step_m=terrain.step_m,
-                        traversable=result.traversable, reachable=result.reachable_centers,
-                        valid_centers=result.valid_centers, scores=result.score_map)
+                        traversable=result.traversable, reachable=result.reachable_centers,eligible_start=result.eligible_centers,
+                        valid_centers=result.valid_centers, scores=result.score_map,
+                        terrain_risk=result.terrain_risk,route_cost=result.route_cost_map)
     quality_maps = {'quality_invalid':terrain.quality_invalid,
                     'decision_slope_deg':terrain.decision_maps()[0],
                     'decision_roughness_m':terrain.decision_maps()[1],
@@ -104,7 +112,7 @@ def _run(manifest_path, output_dir):
     overlay = cv2.cvtColor(data.rgb, cv2.COLOR_RGB2BGR)
     tint = overlay.copy()
     tint[~result.traversable] = (30, 30, 220)
-    tint[result.reachable_centers] = (40, 200, 40)
+    tint[result.eligible_centers] = (40, 200, 40)
     overlay = cv2.addWeighted(overlay, 0.65, tint, 0.35, 0)
     if result.route_pixels:
         cv2.polylines(overlay, [np.array(result.route_pixels, dtype=np.int32)], False, (255, 255, 0), 2)
@@ -126,7 +134,7 @@ def _run(manifest_path, output_dir):
     cv2.putText(canvas, 'RoverSafe', (panel_x, 28), cv2.FONT_HERSHEY_SIMPLEX, .7, (255,255,255), 2)
     cv2.putText(canvas, result.status, (panel_x, 54), cv2.FONT_HERSHEY_SIMPLEX, .48, (255,255,255), 1)
     for index, (label, color) in enumerate([
-        ('Excluded / unknown', (30,30,220)), ('Reachable start centers', (40,200,40)),
+        ('Excluded / unknown', (30,30,220)), ('Eligible start centers', (40,200,40)),
         ('Selected footprint', (0,255,255)), ('Route', (255,255,0)), ('Exit', (255,180,0))]):
         y = 84 + index*23
         cv2.rectangle(canvas,(panel_x,y-12),(panel_x+16,y),color,-1)
@@ -135,6 +143,8 @@ def _run(manifest_path, output_dir):
              f"{'on' if perception.metadata['obstacles']['enabled'] else 'off'}",
              f'Elevation: {data.quality_config.mode}',
              f'Rover: {profile.width_m:g} x {profile.length_m:g} m; margin {profile.margin_m:g} m']
+    if mission.min_start_exit_distance_m:
+        lines += [f'Minimum exit separation: {mission.min_start_exit_distance_m:g} m']
     if result.best:
         lines += [f"Route length: {result.best['route_length_m']:.2f} m",
                   f"Route clearance: {result.best['route_min_clearance_m']:.2f} m"]

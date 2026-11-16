@@ -1,4 +1,4 @@
-"""Coğrafi çıktı, girdi özeti ve ayak izi tanılarını doğrular."""
+"""Dağıtılan örneği, coğrafi çıktıları ve geçersiz rota uçlarını kontrol eder."""
 
 import hashlib
 import json
@@ -10,10 +10,18 @@ import numpy as np
 import rasterio
 from rasterio.warp import transform
 from scripts.create_start_area_sample import prepare
+from scripts.verify_start_area import verify
 from start_area_cli import run
+from start_site_selection import find_route
 
 
 class StartDeliveryTests(unittest.TestCase):
+    def test_synthetic_acceptance_suite(self):
+        with tempfile.TemporaryDirectory() as directory:
+            summary = verify(Path(directory)/'suite')
+            self.assertTrue(summary['passed'], summary['cases'])
+            self.assertEqual(summary['case_count'], 12)
+
     def test_geographic_export_alignment_and_input_hashes(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -35,6 +43,11 @@ class StartDeliveryTests(unittest.TestCase):
                 self.assertEqual(classes[60,35], 3)
                 self.assertEqual(classes[0,0], 0)
                 self.assertIn('reachable_start_center', dst.tags()['classes'])
+            with rasterio.open(root/'out/traversability.tif') as dst:
+                self.assertEqual(dst.count,2)
+                self.assertEqual(dst.descriptions,('terrain_severity','cost_per_meter'))
+                self.assertEqual(dst.nodata,-9999)
+                self.assertTrue(np.isfinite(dst.read(2,masked=True).compressed()).all())
             records = {item['path']: item for item in report['input_fingerprints']}
             self.assertEqual(len(records), 6)
             self.assertEqual(records['manifest.json']['sha256'], hashlib.sha256(manifest.read_bytes()).hexdigest())
@@ -60,7 +73,6 @@ class StartDeliveryTests(unittest.TestCase):
             self.assertFalse((root/'out/selection.geojson').exists())
             self.assertFalse((root/'out/decision.tif').exists())
 
-
     def test_exit_diagnostics_show_nearby_obstacle(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -75,3 +87,33 @@ class StartDeliveryTests(unittest.TestCase):
             self.assertEqual(checks['failed_center_constraints'], [])
             self.assertEqual(checks['failed_footprint_constraints']['not_ground'], 1)
             self.assertEqual(checks['failed_motion_envelope_constraints']['not_ground'], 1)
+
+    def test_sample_never_overwrites_existing_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            marker = root/'keep.txt'
+            marker.write_text('keep', encoding='utf-8')
+            with self.assertRaises(FileExistsError):
+                prepare(root)
+            self.assertEqual(marker.read_text(encoding='utf-8'), 'keep')
+
+    def test_route_rejects_blocked_endpoints_and_invalid_coordinates(self):
+        mask = np.ones((15,20), bool)
+        mask[3,3] = False
+        self.assertEqual(find_route(mask, (3,3), (3,3), .1, .2), [])
+        self.assertEqual(find_route(mask, (3,3), (10,10), .1, .2), [])
+        self.assertEqual(find_route(mask, (10,10), (3,3), .1, .2), [])
+        for start in ((-1,0), (20,0), (1.5,2)):
+            with self.assertRaises(ValueError):
+                find_route(mask, start, (10,10), .1, .2)
+
+    def test_anisotropic_route_uses_shorter_metric_path(self):
+        mask = np.ones((8,9), bool)
+        mask[1:7,4] = False
+        route = find_route(mask, (1,4), (7,4), .2, .1)
+        length = sum(abs(b[0]-a[0])*.2+abs(b[1]-a[1])*.1 for a,b in zip(route,route[1:]))
+        self.assertAlmostEqual(length, 1.8)
+
+
+if __name__ == '__main__':
+    unittest.main()
