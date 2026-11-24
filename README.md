@@ -9,6 +9,7 @@ RoverSafe, drone ve İHA görüntülerinden rover için uygun başlangıç alanl
 ### Özellikler
 
 - Görüntü ve kayıtlı video işleme
+- Aynı video üzerinde tekrarlı performans ölçümü ve HTML raporu
 - Gürültü azaltma, kontrast iyileştirme ve kenar/doku analizi
 - Rover ayak izi ve çevre payına göre aday alan belirleme
 - YOLO ile isteğe bağlı nesne tespiti
@@ -80,6 +81,7 @@ RoverSafe is a Python-based terrain analysis application that identifies suitabl
 ### Features
 
 - Image and recorded video processing
+- Repeated performance measurements on the same video with HTML reports
 - Noise reduction, contrast enhancement, and edge/texture analysis
 - Candidate region extraction based on rover footprint and clearance margin
 - Optional object detection with YOLO

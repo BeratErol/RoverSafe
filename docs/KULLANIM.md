@@ -124,3 +124,25 @@ Metre tabanlı manifestin `mission` bölümüne `"min_start_exit_distance_m": 5.
 | `fixed_start_too_close_to_exit` | Sabit başlangıç fiziksel koşulları geçiyor ancak çıkışa fazla yakın. Nokta taşınmaz. |
 
 `best.distance_to_exit_m` kuş uçuşu mesafeyi, `route_length_m` bulunan rotayı gösterir. `maps.npz` içindeki `reachable` fiziksel bağlantıyı korur; `eligible_start` ayrıca asgari mesafeyi uygular. Görseldeki yeşil alanlar ve `decision.tif` sınıf 3 uygun başlangıç merkezleridir.
+
+
+## Video performans ölçümü
+
+Aynı klip üzerinde temel görüntü işleme hattı ile bir yüzey modeli karşılaştırılabilir:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/benchmark_video.py --input data/videos/aeroscapes_demo.avi --surface-config configs/surface_dense_urban.json --output-dir outputs/video_benchmark --frames 24 --repeats 3 --strides 1 3
+```
+
+Video ve model ağırlıkları önceden hazırlanmalıdır. AeroScapes demo manifesti ve görüntüleri mevcutsa kaynak klip `scripts/create_dataset_video.py` ile üretilebilir. Bu klibin 10 FPS zamanlaması yapaydır; gerçek uçuş kare aralığı değildir. Başka bir yerel video da kullanılabilir. Temel hattı tek başına ölçmek için `--surface-config` kaldırılır. Yeni veya boş çıktı klasörü gerekir.
+
+Araç ilk kareleri en fazla 640 piksel genişliğe, en/boy oranını koruyarak indirir ve bütün profillere aynı MJPG klibi verir. `--width`, `--frames`, `--repeats` ve `--strides` ölçüm kapsamını belirler. Her tekrarda model yeniden yüklenir.
+
+- `summary.json`: giriş SHA-256, çözünürlük, ortam ve paket sürümleri, model/kodlayıcı özetleri, eşik, ilk kare/medyan/P95 süreleri.
+- İşleme FPS: kare analizinin hızı; model kurulumunu, video okuma/yazma ve görselleştirmeyi içermez.
+- Uçtan uca FPS: model kurulumu, video okuma/yazma ve görselleştirme dahil hız.
+- `report.html`: tekrarların ölçümleri ve her çalışmanın görsel/video bağlantıları.
+
+Çıktı videoları sonuna kadar yeniden okunur; kare indeksleri seçilen adımla karşılaştırılır. Kare atlamak tek kare çıkarım maliyetini azaltmaz. Farklı adımlar farklı içerikte kare seçtiğinden hız farkı yalnız adım parametresine bağlanmaz. Kısa klip ölçümü gerçek zaman garantisi değildir.
+
+Bu araç kayıtlı RGB karelerinde görsel ön eleme yapar. Dünya koordinatında takip/SLAM, video üzerinden metrik rota veya hareket kontrolü uygulamaz. YOLO bu karşılaştırmaya varsayılan olarak dahil değildir; bu deney algılama doğruluğunu ölçmez.
